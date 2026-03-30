@@ -27,3 +27,42 @@ docker run -v /host/path:/container/path nginx # Pathmount
 docker run -v volume:/container/path nginx # Volume 
 docker run -e ENV_VAR=value nginx # Umgebungsvariable
 docker run --rm nginx #Autoremove nach Stop
+
+docker exec -it xxxxxxx bash
+
+# Container Übersichten
+docker ps # Listet laufende Container auf
+docker ps -a # Listet alle Container auch die gestoppten auf
+docker ps -q # Nur IDs
+docker ps --filter "status=running" gefiltert nach STatus
+
+# Container Verwaltung
+docker stop <container-id>
+docker start <container-id>
+docker pause <container-id> 
+docker unpause <container-id>
+docker restart<container-id>
+docker rm <container-id> # Container entfernen
+docker rm $(docker ps -aq) # Entfern alle gestopen container
+docker container prune # lösch alle gestoppten Container
+
+# Container untersuchen
+docker inspect <container-id>
+docker logs  <container-id> 
+docker logs -f <container-id> 
+docker logs -f <container-id> --tail 10
+
+# Container Ressourcenverbrauch
+docker stats
+docker stats <container-id> 
+docker top <container-id> # Top Prozesse im Container
+
+docker exec -it <container-id> bash
+docker exec -it <container-id> sh
+docker exec -it <container-id> ls /app 
+docker exec -u root  <container-id> bash # Sitzung al root user
+
+# Volumes
+docker volume create <volumename>    /dockerhive/data/volumes/<volumename>
+docker volume #ls Listet Laufwerke auf
+docker volume ls --filter "dangling=true" # ungenutzte Laufwerke
