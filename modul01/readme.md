@@ -66,3 +66,39 @@ docker exec -u root  <container-id> bash # Sitzung al root user
 docker volume create <volumename>    /dockerhive/data/volumes/<volumename>
 docker volume #ls Listet Laufwerke auf
 docker volume ls --filter "dangling=true" # ungenutzte Laufwerke
+docker volume inspect <volumename>
+docker volume create --driver local --opt type=cifs --opt device=//localhost/docker smb_volume
+
+docker run -v smb_volume:/etc/nginx/config --Name myNginnx nginx:latest
+
+docker volume rm <volumename>
+docker volume prune
+# Network
+Treiber
++++++++++++++++++++++++++++++++++++++++
+bridge + NAT-Netzwerk auf Host  + Standard, Entwicklung
+---------------------------------------------------------
+host  * kein eigenes Netz, Host Stack + Low-Latency
+---------------------------------------------------------
+none  * kein Netzwerk + Security , Batch
+---------------------------------------------------------
+overlay * Netz über mehrere Host * Swarm
+---------------------------------------------------------
+macvlan * Eigne Mac Adresse im Lan + Voip, Nas 
+---------------------------------------------------------
+
+docker network ls
+docker network create <networkname>
+docker network create --driver bridge <networkname>
+docker network create --subnet=172.99.0.0/16 <networkname>
+docker network inspect <networkname>
+
+# Mit Netzwerk verbinden
+docker run --network <networkname> nginx
+
+docker network disconnect  <networkname> <container-id> #vom Netzwerk trennen
+docker network connect <networkname> <container-id>
+
+
+docker network rm <networkname> # Löscht das Netzwerk
+docker network prune # Löscht alle Netzwerke
