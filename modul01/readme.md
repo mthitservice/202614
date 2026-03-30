@@ -17,3 +17,13 @@ docker tag <sourceimage><tag> <repository>/<targetimage><tag>
 #Image veröffentlichen
 docker push <repository>/<sourceimage><tag> 
 
+### Container Start
+docker run <imagename>
+docker run -d nginx # STartet im Hintergrunt d=detatched
+docker run -it ubuntu bash  # Interaktiver Zugriff (-it)
+docker run --name mycontainer nginx
+docker run -p 8080:80  nginx # Port  -p Host:Container
+docker run -v /host/path:/container/path nginx # Pathmount 
+docker run -v volume:/container/path nginx # Volume 
+docker run -e ENV_VAR=value nginx # Umgebungsvariable
+docker run --rm nginx #Autoremove nach Stop
