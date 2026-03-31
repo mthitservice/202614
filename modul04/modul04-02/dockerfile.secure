@@ -8,7 +8,7 @@ COPY requirements-secure.txt req.txt
 RUN pip install --no-cache-dir -r req.txt
 
 RUN useradd  -r -s /bin/false appuser
-USER app user
+USER appuser
 
 COPY app.py .
 
