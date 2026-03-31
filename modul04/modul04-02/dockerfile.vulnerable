@@ -1,0 +1,17 @@
+# ============================================
+# ABSICHTLICH VERWUNDBARES IMAGE
+# Nur für Demo-Zwecke - NICHT in Produktion!
+# ============================================
+
+# Altes Base Image mit bekannten CVEs
+FROM python:3.8-buster
+
+LABEL warning="Demo only"
+
+WORKDIR /app
+COPY requirements-vulnerable.txt req.txt
+RUN pip install --no-cache-dir -r req.txt
+
+COPY app.py .
+EXPOSE 5000
+CMD ["python", "app.py"]
