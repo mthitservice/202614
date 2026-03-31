@@ -10,7 +10,7 @@ COPY req.txt .
 RUN pip install --no-cache-dir -r req.txt
 
 # Non-root User
-RUN useradd -r -s /bin/false appuser
+RUN useradd -r -s /bin/false -u 1001  appuser
 
 # App kopieren
 COPY app.py .
