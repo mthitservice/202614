@@ -24,3 +24,13 @@ docker scout recommendations vulnerable-app
 # Vergleich mit aktuelleren Base-Images
 docker scout compare vulnerable-app --to python:3.12-slim
 ```
+
+## SBOM (Software Bill of Materials)
+
+```bash
+# SBOM erstellen
+docker scout sbom vulnerable-app
+
+# SBOM als JSON exportieren
+docker scout sbom --format spdx-json vulnerable-app > sbom.json
+```
