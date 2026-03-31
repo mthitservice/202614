@@ -1,0 +1,7 @@
+services:
+  web:
+    image: nginx:latest
+    depends_on:
+      - api
+  api:
+    image: nginx:latest
