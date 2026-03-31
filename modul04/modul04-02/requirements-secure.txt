@@ -1,0 +1,6 @@
+# Aktuelle sichere Versionen
+flask==3.0.0
+werkzeug==3.0.1
+jinja2==3.1.2
+requests==2.31.0
+urllib3==2.1.0
