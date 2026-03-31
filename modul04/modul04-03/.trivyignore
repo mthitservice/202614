@@ -1,0 +1,5 @@
+# TRIVY IgnoreFile
+# Format:
+# CVE-XXXX-YYYY
+# CVE-2021-44228
+#CVE-2021-44228 # Log4j CVE-2021-44228 
