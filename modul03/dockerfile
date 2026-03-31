@@ -1,0 +1,11 @@
+# From
+FROM ubuntu:24.04
+
+# Code ausführen (Update)
+RUN apt-get update
+
+# Code ausführen (Installation)
+RUN apt-get install -y curl
+
+#Command ausführen
+CMD ["echo", "Hallo aus meinem Docker Image"]

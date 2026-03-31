@@ -16,3 +16,14 @@
 | `USER` | User für nachfolgende Befehle | `USER node` |
 | `ARG` | Build-Argument | `ARG VERSION=1.0` |
 | `LABEL` | Metadaten hinzufügen | `LABEL version="1.0"` |
+
+
+# Docker Build (zum Bauen von Images)
+
+``` bash
+docker build .
+```
+
+``` bash
+docker build -t myapp:1.0.0 .
+```
