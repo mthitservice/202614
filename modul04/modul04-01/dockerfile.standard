@@ -1,0 +1,10 @@
+# Dockerfile (Nichtoptimierte Version)
+FROM python:3.11
+
+WORKDIR /app
+# Alles kopieren auch unnötige Dateien
+COPY . .
+RUN pip install -r req.txt
+EXPOSE  5000
+# Als Root (unsicher)
+CMD ["python", "app.py"]

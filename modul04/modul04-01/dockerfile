@@ -1,0 +1,29 @@
+# Multistage Build Dockerfile (Optimierte Version)
+#Stage 1: Build-Stage
+FROM python:3.11-slim AS builder
+
+WORKDIR /build
+
+COPY req.txt .
+RUN pip wheel --no-cache-dir --wheel-dir=/wheels -r req.txt && cp req.txt /wheels/
+
+#Stage 2: Produktions-Stage
+FROM python:3.11-alpine as production
+LABEL maintainer="Michael Lindner" \
+      description="Optimierter Dockerfile mit Multistage Build" \
+      version="1.0"
+
+WORKDIR /app
+# Nur die kompilierten Wheels aus Stage 1 kopieren
+COPY --from=builder /wheels /wheels
+# Abhängigkeiten ohne Kompilierungsdateien installieren
+RUN pip install --no-cache-dir --find-links=/wheels -r /wheels/req.txt && rm -rf /wheels
+
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
+COPY app.py .
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+
+
