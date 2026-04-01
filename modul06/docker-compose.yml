@@ -5,8 +5,14 @@ services:
     expose:
       - "80"
     networks:
-      - frontend_net
-      - backend_net
+      frontend_net:
+        ipv4_address:  192.168.2.2
+        ipv6_address: fd00:cafe:beef::2
+      backend_net:
+        ipv4_address: 10.20.0.3
+        ipv6_address: fd00:dead:beef::3
+    
+    
     volumes:
       - frontend_log:/var/log/nginx
       - frontend_data:/usr/share/nginx/html
@@ -19,7 +25,9 @@ services:
     expose:
       - "5000"
     networks:
-      - backend_net
+      backend_net:
+        ipv4_address: "10.20.0.4"
+        ipv6_address: "fd00:dead:beef::4"
     volumes:
       - backend_data:/app/data
       - backend_log:/app/logs
@@ -38,7 +46,9 @@ services:
       - proxy_log:/var/log/nginx
     restart:  unless-stopped
     networks:
-      - backend_net
+      backend_net:
+        ipv4_address: "10.20.0.5"
+        ipv6_address: "fd00:dead:beef::5"
 
   prometheus:
     image: prom/prometheus:latest
@@ -48,7 +58,9 @@ services:
     volumes:
       - ./monitor/monitor.yml:/etc/prometheus/prometheus.yml:ro
     networks:
-      - backend_net
+      backend_net:
+        ipv4_address: "10.20.0.6"
+        ipv6_address: "fd00:dead:beef::6"
     restart: unless-stopped
 
   grafana:
@@ -68,7 +80,9 @@ services:
       - GF_SECURITY_COOKIE_SECURE=true
       - GF_FEATURE_TOGGLES_ENABLE=publicDashboards
     networks:
-      - backend_net
+      backend_net:
+        ipv4_address: "10.20.0.7"
+        ipv6_address: "fd00:dead:beef::7"
     restart: unless-stopped
 volumes:
   grafana-data:
@@ -81,6 +95,21 @@ volumes:
 networks:
   frontend_net:
     driver: bridge
+    enable_ipv6: true
+    ipam: 
+      config:
+        - subnet: "192.168.2.0/24"
+          gateway: "192.168.2.1"
+        - subnet: "fd00:cafe:beef::/64"
+          gateway: "fd00:cafe:beef::1"
+
   backend_net:
     driver: bridge
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: "10.20.0.0/24"
+          gateway: "10.20.0.1"
+        - subnet: "fd00:dead:beef::/64"
+          gateway: "fd00:dead:beef::1"
 
