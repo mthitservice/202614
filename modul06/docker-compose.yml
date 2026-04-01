@@ -4,13 +4,26 @@ services:
     container_name: frontend
     expose:
       - "80"
+    networks:
+      - frontend_net
+      - backend_net
+    volumes:
+      - frontend_log:/var/log/nginx
+      - frontend_data:/usr/share/nginx/html
     depends_on:
       - backend
+    restart:  unless-stopped
   backend:
     build: ./backend
     container_name: backend
     expose:
       - "5000"
+    networks:
+      - backend_net
+    volumes:
+      - backend_data:/app/data
+      - backend_log:/app/logs
+    restart:  unless-stopped
   proxy:
     image: nginx:latest
     container_name: proxy
@@ -22,7 +35,10 @@ services:
     volumes:
       - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./proxy/certs:/etc/nginx/certs:ro
-
+      - proxy_log:/var/log/nginx
+    restart:  unless-stopped
+    networks:
+      - backend_net
 
   prometheus:
     image: prom/prometheus:latest
@@ -31,6 +47,9 @@ services:
       - "9090"
     volumes:
       - ./monitor/monitor.yml:/etc/prometheus/prometheus.yml:ro
+    networks:
+      - backend_net
+    restart: unless-stopped
 
   grafana:
     image: grafana/grafana:latest
@@ -48,5 +67,20 @@ services:
       - GF_SECURITY_COOKIE_SAMESITE=none
       - GF_SECURITY_COOKIE_SECURE=true
       - GF_FEATURE_TOGGLES_ENABLE=publicDashboards
+    networks:
+      - backend_net
+    restart: unless-stopped
 volumes:
   grafana-data:
+  backend_data:
+  backend_log:
+  frontend_data:
+  frontend_log:
+  proxy_log:
+
+networks:
+  frontend_net:
+    driver: bridge
+  backend_net:
+    driver: bridge
+
