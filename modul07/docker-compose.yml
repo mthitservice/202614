@@ -1,0 +1,33 @@
+services:
+  app-secure:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "8080:8080"
+    # Sicherheit: Container mit einem nicht-root User aus
+    user: "1001:1001"
+    # Sicherheit: Read-Only File System
+    read_only: true
+    # Temporäre Dateien erlauben
+    tmpfs:
+      - /tmp
+    # Verbieten von privilegierten Operationen
+    security_opt:
+      - no-new-privileges:true
+    # Alle Linux Capabilities entfernen
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+    
+    # Nicht sichere Container  Instanz
+  app-insecure:
+    build:
+      context: .
+      dockerfile: dockerfile.root
+    ports: 
+      - "5001:8080"   
